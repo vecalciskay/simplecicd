@@ -20,5 +20,10 @@
         {
             Balance += amount;
         }
+
+        public void Sacar(double amount)
+        {
+            Balance -= amount;
+        }
     }
 }
