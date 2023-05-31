@@ -69,6 +69,7 @@ jobs:
 
   build-docker-image:
     needs: scan-analysis
+    name: Build Docker image
     runs-on: ubuntu-latest
 
     steps:
