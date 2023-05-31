@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
@@ -28,6 +28,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
       
   scan-analysis:
+    needs: build
     name: Analysis with SonarQube
     runs-on: windows-latest
     steps:
@@ -67,7 +68,7 @@ jobs:
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
   build-docker-image:
-    needs: build
+    needs: scan-analysis
     runs-on: ubuntu-latest
 
     steps:
