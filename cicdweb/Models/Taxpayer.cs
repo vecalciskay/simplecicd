@@ -3,20 +3,19 @@
 namespace cicdweb.Models
 {
     /// <summary>
-    /// This class represents a tax payer.
-    /// The taxpayer has a name and a tax id, and a list of tax returns.
-    /// 
+    /// This is a TaxPayer class.
+    /// Attributes here are the tax id and the name of the taxpayer.
     /// </summary>
     public class TaxPayer
     {
-        public string Name { get; set; }
         public string TaxId { get; set; }
+        public string Name { get; set; }
         public List<TaxReturn> TaxReturns { get; set; }
 
-        public TaxPayer(string name, string taxId)
+        public TaxPayer(string taxId, string name)
         {
-            Name = name;
             TaxId = taxId;
+            Name = name;
             TaxReturns = new List<TaxReturn>();
         }
 
@@ -30,30 +29,35 @@ namespace cicdweb.Models
             TaxReturns.Remove(taxReturn);
         }
 
-        public void PayTaxReturn(TaxReturn taxReturn)
+        public double CalculateTotalTaxReturns()
         {
-            taxReturn.CalculatePenalty();
-            taxReturn.Pay();
+            double total = 0;
+            foreach (TaxReturn taxReturn in TaxReturns)
+            {
+                total += taxReturn.Amount;
+            }
+            return total;
         }
 
-        public void PayAllTaxReturns()
+        public void PayTaxReturns()
         {
             foreach (TaxReturn taxReturn in TaxReturns)
             {
-                taxReturn.CalculatePenalty();
                 taxReturn.Pay();
             }
         }
-        public void PayOnlyTaxReturnThatAreDue()
+
+        public void PayOnlyTheTaxesThatAreBeforeTheDueDate()
         {
+
             foreach (TaxReturn taxReturn in TaxReturns)
             {
-                if (taxReturn.DueDate < DateTime.Now)
+                if (taxReturn.DueDate > DateTime.Now)
                 {
-                    taxReturn.CalculatePenalty();
                     taxReturn.Pay();
                 }
             }
         }
     }
 }
+

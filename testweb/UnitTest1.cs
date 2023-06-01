@@ -8,10 +8,13 @@ namespace testweb
         [Fact]
         public void Test1()
         {
-            Account account = new Account("Test", 100);
-            
+            // Arrange
+            Account account = new Account("Test", 100);            
+
+            // Act
             account.Deposit(100);
 
+            // Assert
             Assert.Equal(200, account.Balance);
         }
     }

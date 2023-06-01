@@ -2,8 +2,10 @@
 {
     /// <summary>
     /// This class represents a tax return of a tax payer.
-    /// Objects of this class have the taxpayer, the amount, the period and the duedate.
-    /// A penalty fee is applied if the tax return is not paid until the duedate.
+    /// Objects of this class have the taxpayer, the amount, 
+    /// the period and the duedate.
+    /// A penalty fee is applied if the tax return is not 
+    /// paid until the duedate.
     /// </summary>
     public class TaxReturn
     {
@@ -23,7 +25,8 @@
 
         /// <summary>
         /// A penalty fee is applied if the tax return is not paid until the duedate.
-        /// The penalty is calculated as 2 for each day passed after the duedate.
+        /// The penalty is calculated as 2 for each day passed 
+        /// after the duedate.
         /// </summary>
         public void CalculatePenalty()
         {
@@ -41,4 +44,4 @@
             }
         }
     }
- }
+}
